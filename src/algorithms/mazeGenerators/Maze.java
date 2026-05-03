@@ -46,7 +46,7 @@ public class Maze {
 
     /**
      * Sets the value of a specific cell.
-     * @param row    row index
+     * @param row row index
      * @param column column index
      * @param value  0 (open) or 1 (wall)
      */
