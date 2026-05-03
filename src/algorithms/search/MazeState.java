@@ -1,7 +1,16 @@
 package algorithms.search;
+import algorithms.mazeGenerators.Position;
 
 public class MazeState extends AState{
-    public MazeState(String state) {
-        super(state);
+
+    private final Position position;
+
+    public MazeState(Position position) {
+        super(position.toString());
+        this.position = position;
+    }
+
+    public Position getPosition(){
+        return position;
     }
 }

@@ -1,4 +1,4 @@
 package algorithms.search;
 
-public class BestFirstSearch {
+public class BestFirstSearch implements ISearchingAlgorithm{
 }

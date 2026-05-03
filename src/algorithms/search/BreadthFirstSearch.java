@@ -1,4 +1,4 @@
 package algorithms.search;
 
-public class BreadthFirstSearch {
+public class BreadthFirstSearch implements ISearchingAlgorithm{
 }
