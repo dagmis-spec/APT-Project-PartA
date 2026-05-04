@@ -35,7 +35,7 @@ public class MyMazeGenerator extends AMazeGenerator {
      * picks a random unvisited neighbor two cells away, knocks down the wall between them, and pushes the neighbor;
      * when no unvisited neighbors exist it backtracks by popping the stack, until all rooms have been visited.
      *
-     * @param rows    desired number of rows  (minimum 2)
+     * @param rows desired number of rows  (minimum 2)
      * @param columns desired number of columns (minimum 2)
      * @return a freshly generated, perfect Maze
      */
@@ -62,16 +62,16 @@ public class MyMazeGenerator extends AMazeGenerator {
             int cr = current[0];
             int cc = current[1];
 
-            // Collect unvisited neighbours (2 steps away, still walls)
+            // Collect unvisited neighbors (2 steps away, still walls)
             List<int[]> neighbours = getUnvisitedNeighbours(maze, cr, cc, rows, columns);
 
             if (!neighbours.isEmpty()) {
-                // Pick a random unvisited neighbour
+                // Pick a random unvisited neighbor
                 int[] chosen = neighbours.get(RANDOM.nextInt(neighbours.size()));
                 int nr = chosen[0];
                 int nc = chosen[1];
 
-                // Knock down the wall between current room and chosen neighbour
+                // Knock down the wall between current room and chosen neighbor
                 maze.setCellValue((cr + nr) / 2, (cc + nc) / 2, 0);
                 // Open the chosen room
                 maze.setCellValue(nr, nc, 0);
@@ -84,12 +84,17 @@ public class MyMazeGenerator extends AMazeGenerator {
         }
 
         // ── Place entrance and exit ────────────────────────────────────────────
-        // Start: random open cell on the first row (or create one)
+
+        // START: open cell on the first row (or create one)
         int sCol = findOrOpenBorderCell(maze, 0, columns);
+        maze.setCellValue(0, sCol, 0);
+        maze.setCellValue(1, sCol, 0);  //connect to S
         maze.setStartPosition(new Position(0, sCol));
 
-        // Goal: random open cell on the last row (or create one)
+        // Goal: open cell on the last row (or create one)
         int gCol = findOrOpenBorderCell(maze, rows - 1, columns);
+        maze.setCellValue(rows - 1, gCol, 0);
+        maze.setCellValue(rows - 2, gCol, 0);  // connect to E
         maze.setGoalPosition(new Position(rows - 1, gCol));
 
         return maze;

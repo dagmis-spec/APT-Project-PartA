@@ -55,17 +55,15 @@ public class SearchableMaze implements ISearchable {
         int row = position.getRowIndex();
         int column = position.getColumnIndex();
 
-        //checking regular directions
-        addStateIfPossible(allPossibleStates, row - 1, column); //upwards
-        addStateIfPossible(allPossibleStates, row + 1, column); //downwards
-        addStateIfPossible(allPossibleStates, row, column - 1); //left
-        addStateIfPossible(allPossibleStates, row, column + 1); //right
-
-        //diagonal steps
-        addStateIfPossibleDiagonal(allPossibleStates, row - 1, column - 1, row - 1, column, row, column - 1); //up-left
+        // Check neighbors clockwise, starting from the top cell.
+        addStateIfPossible(allPossibleStates, row - 1, column); //up
         addStateIfPossibleDiagonal(allPossibleStates, row - 1, column + 1, row - 1, column, row, column + 1); //up-right
-        addStateIfPossibleDiagonal(allPossibleStates, row + 1, column - 1, row + 1, column, row, column - 1); //down-left
+        addStateIfPossible(allPossibleStates, row, column + 1); //right
         addStateIfPossibleDiagonal(allPossibleStates, row + 1, column + 1, row + 1, column, row, column + 1); //down-right
+        addStateIfPossible(allPossibleStates, row + 1, column); //down
+        addStateIfPossibleDiagonal(allPossibleStates, row + 1, column - 1, row + 1, column, row, column - 1); //down-left
+        addStateIfPossible(allPossibleStates, row, column - 1); //left
+        addStateIfPossibleDiagonal(allPossibleStates, row - 1, column - 1, row - 1, column, row, column - 1); //up-left
 
         return allPossibleStates;
     }
